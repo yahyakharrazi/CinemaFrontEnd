@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpClientModule } from "@angular/common/http";
+import { AuthenticationService } from "./authentication.service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +9,14 @@ export class CinemaService {
 
   public host:string="http://localhost:8085"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService:AuthenticationService) { }
 
   public getVilles(){
-    return this.http.get(this.host+'/villes')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', this.authService.loadToken())
+    }
+    return this.http.get(this.host+'/villes', header)
   }
 
   // public getCategories(){

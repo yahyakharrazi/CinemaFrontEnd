@@ -1,0 +1,23 @@
+<div class="wrapper fadeInDown my-5 py-5">
+    <div id="formContent">
+      <!-- Login Form -->
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" 
+      id="message-card" *ngIf="mode==1" >
+          <strong>Bad credentials</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #f="ngForm" (ngSubmit)="onLogin(f.value)">    
+        <input type="text" class="fadeIn second mt-5" name="username" placeholder="login" ngModel="">
+        <input type="password" class="fadeIn third" name="password" placeholder="password" ngModel="">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Create an account</a>
+      </div>
+  
+    </div>
+  </div>
